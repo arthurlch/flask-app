@@ -1,41 +1,18 @@
-
-<!DOCTYPE html>
-
-
-<html>
-
-
-<head>
-	
-	{% if title %}
-		<title> Flask blog - {{ title }}</title>
-	{% else %}
-	
-	<title>
-		Flask blog
-	
-	</title>
-	
-	{% endif %}
-</head>
-
-
-
-
-<body>
-
+{% extends "layout.html" %} 
+{% block content %}
 	{% for post in posts %}
-
-		<h3>{{post.title}}</h3>
-		<p>{{post.content}}</p>
-		<p>by {{ post.author }}</p>
-		<p> posted the {{post.date_posted}}</p>
-
-		
-	
+		<article class="media content-section">
+		  <div class="media-body">
+		    <div class="article-metadata">
+		      <a class="mr-2" href="#">{{ post.author }}</a>
+		      <small class="text-muted">{{ post.date_posted }}</small>
+		    </div>
+		    <h2><a class="article-title" href="#">{{ post.title }}</a></h2>
+		    <p class="article-content">{{ post.content }}</p>
+		  </div>
+		</article>
 	{% endfor %}
+{% endblock content %} <!-- endblock stop the block, content: cite the block to stop to be more precise -->
 
 
 
-</body>
-</html>

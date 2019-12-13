@@ -38,13 +38,23 @@ def home():
 # dummy data 
 # the dummy data will serve to show how to transfer data from app.py ( flask to templates made in html)
 posts = [
-{
-	'author':'Author',
-	'title':'post title',
-	'content':'First post of content',
-	'date_posted':'April 20, 2018'
-}
-]
+		{
+			'author':'Author',
+			'title':'post title',
+			'content':'First post of content',
+			'date_posted':'April 20, 2018'
+
+
+		},
+
+		{
+			'author':'Author',
+			'title':'post title',
+			'content':'First post of content',
+			'date_posted':'April 20, 2018'
+
+		}
+		]
 
 # def about page route + render 
 @app.route('/about')
