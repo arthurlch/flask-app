@@ -88,7 +88,7 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 ## Acknowledgments
 
 * This project has been made using the courses kindly made & opensource from  Corey Schafer.
-	## Corey Schafer github:https://github.com/CoreyMSchafer
+	Corey Schafer github:https://github.com/CoreyMSchafer
 	Code used from his github: https://github.com/CoreyMSchafer/code_snippets/tree/master/Python
 	His website with ressources that helped to build this app: https://coreyms.com/ *
 	
