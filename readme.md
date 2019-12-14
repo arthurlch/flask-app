@@ -7,12 +7,12 @@ Flask application
 
 ### Prerequisites
 
+
+
+```
 OS X, Linux, MS W.x
 Python 3.x 
 Flask
-
-```
-Give examples
 ```
 
 ### Installing
@@ -22,60 +22,64 @@ A step by step series of examples that tell you how to get a development env run
 Say what the step will be
 
 ```
-Give the example
-```
+git clone https://github.com/ArthurDav/flask-app.git ```
 
-And repeat
 
 ```
-until finished
+
 ```
 
-End with an example of getting some data out of the system or using it for a little demo
 
 ## Running the tests
 
-Explain how to run the automated tests for this system
+Test should be run with app.py
 
 ### Break down into end to end tests
 
-Explain what these tests test and why
 
 ```
-Give an example
+None
 ```
 
 ### And coding style tests
 
-Explain what these tests test and why
+
 
 ```
-Give an example
+None
 ```
 
 ## Deployment
 
-Add additional notes about how to deploy this on a live system
+Heroku will be the easiest way to deploy the application.
+Flask documentation about deployment.
+
+Tutorial Flask app deployment with Heroku : https://medium.com/the-andela-way/deploying-a-python-flask-app-to-heroku-41250bda27d0
 
 ## Built With
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+* SublimeText3: https://www.sublimetext.com/
+* VisualStudioCode: https://visualstudio.microsoft.com/
+* ViM: https://www.vim.org/
+* Flask: https://www.palletsprojects.com/p/flask/
+* Bootstrap: https://getbootstrap.com/
+* Python 3.x: https://www.python.org/
+* HTML5
+* CSS,SASS
+* KDE-NEON / Ubuntu 19.10/xx Fedora-31
 
 ## Contributing
 
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
+No process for submitting pull requests to us. Please fork the project for any modifications.
 
 ## Versioning
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
+0.x 
 
 ## Authors
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+* **ArthurDav** - * Flask application * - [ArthurDav](https://github.com/ArthurDav)
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
 
 ## License
 
@@ -84,7 +88,7 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 ## Acknowledgments
 
 * This project has been made using the courses kindly made & opensource from  Corey Schafer.
-	Corey Schafer github:https://github.com/CoreyMSchafer
+	## Corey Schafer github:https://github.com/CoreyMSchafer
 	Code used from his github: https://github.com/CoreyMSchafer/code_snippets/tree/master/Python
 	His website with ressources that helped to build this app: https://coreyms.com/ *
 	
