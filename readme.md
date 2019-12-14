@@ -9,11 +9,7 @@ Flask application
 
 
 
-```
-OS X, Linux, MS W.x
-Python 3.x 
-Flask
-```
+``` OS X, Linux, MS W.x, Python 3.x Flask ```
 
 ### Installing
 
@@ -21,13 +17,9 @@ A step by step series of examples that tell you how to get a development env run
 
 Say what the step will be
 
-```
-git clone https://github.com/ArthurDav/flask-app.git ```
+``` git clone https://github.com/ArthurDav/flask-app.git ```
 
 
-```
-
-```
 
 
 ## Running the tests
@@ -37,17 +29,11 @@ Test should be run with app.py
 ### Break down into end to end tests
 
 
-```
-None
-```
+
 
 ### And coding style tests
 
 
-
-```
-None
-```
 
 ## Deployment
 
