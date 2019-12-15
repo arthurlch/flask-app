@@ -24,10 +24,11 @@ User Registration
 from flask import Flask, url_for, render_template
 # import flask framework 
 # import url_for (avoid hard coding of the urls)
+from forms import RegistrationForm, LoginForm
 # define name app app = __name__
 app = Flask(__name__)
 
-
+app.config['SECRET_KEY'] ='b88b9d2380bfe69dbb922efa674210a5'
 
 
 # .route decorator for home define home page + render template of home 
@@ -80,6 +81,16 @@ def user(name):
 name = [{
 	'name':'name'
 }]
+
+@app.route('/register')
+def register():
+	form = RegistrationForm()
+	return render_template('register.html', title='Register', form=form)
+
+@app.route('/login')
+def login():
+	form = LoginForm()
+	return render_template('login.html', title='Login', form=form)
 
 # python idiom __name_ = '__main__' 
 # open file using the terminal ' python3 app.py'
