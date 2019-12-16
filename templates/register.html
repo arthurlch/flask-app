@@ -2,40 +2,103 @@
 layout.html is reused to not duplicate code --> 
 
 
+
 {% extends "layout.html" %}
 {% block content %}
+
+
+<!-- 
+is-invalid(Flask), invalid-feedback(bootstrap)
+
+using invalid-feedback we make a loop for errors in user input  
+form.(argument).errore
+	for error in argument(username,password, email, confirm_password) 
+	then show error with span
+
+if else(correct input), show normal output (line 84 in app.py)
+
+loop for email,username, password, confirm_password	-->
+
 	<div class="content-section">
 		<form method="POST" action=""> 
-			{{ form.hidden_tag() }}
+			{{ form.hidden_tag() }} 	 <!-- hidden the tag for security purposes(https://flask-wtf.readthedocs.io/en/stable/api.html?highlight=hidden_tag#flask_wtf.FlaskForm.hidden_tag) -->
 			<fieldset class="form-group">
 				<legend class="border-bottom mb-4">Register today</legend>
+
+				<!-- Email field -->
 				<div class="form-group">
 					{{ form.email.label(class="form-control-label") }}
-					{{ form.email(class="form-control form-control-lg") }}
+					{% if form.email.errors %}  <!-- if wrong input diplay invalid input -->
+						{{ form.email(class="form-control form-control-lg is-invalid") }}
+						<div class=invalid-feedback >
+							<!-- error loop. For error in forms.email(x-argument).errors then display error -->
+							{% for error in form.email.errors %} 
+								<span>{{ error }}</span>
+							{% endfor %} <!-- end the for loop -->
+						</div>
+					{% else %} <!-- else, a good input display form & next step -->
+						{{ form.email(class="form-control form-control-lg") }}
+					{% endif %} <!-- end if statement -->
 				</div>
+				
+				<!-- For the 4 fields username/email/passwords/confirm_password same process, same code-base -->
+				<!-- Same loop thought each fields -->
+				<!-- to create a new form just change the field name with your own - form.myfield.label
+					 form.myfield.errors form.myfield --> 
+
+				<!-- username field -->
 				<div class="form-group">
 					{{ form.username.label(class="form-control-label") }}
-					{{ form.username(class="form-control form-control-lg") }}
+					{% if form.username.errors %}
+						{{ form.username(class="form-control form-control-lg is-invalid") }}
+						<div class=invalid-feedback >
+							{% for error in form.username.errors %} 
+								<span>{{ error }}</span>
+							{% endfor %}
+						</div>
+					{% else %}
+						{{ form.username(class="form-control form-control-lg") }}
+					{% endif %}
 				</div>
+			    <!-- password field -->
 				<div class="form-group">
 					{{ form.password.label(class="form-control-label") }}
-					{{ form.password(class="form-control form-control-lg") }}
+					{% if form.password.errors %}
+						{{ form.password(class="form-control form-control-lg is-invalid") }}
+						<div class=invalid-feedback >
+							{% for error in form.password.errors %}
+								<span>{{ error }}</span>
+							{% endfor %}
+						</div>
+					{% else %}
+						{{ form.password(class="form-control form-control-lg") }}
+					{% endif %}
 				</div>
+				<!-- Confim_password field -->
 				<div class="form-group">
 					{{ form.confirm_password.label(class="form-control-label") }}
-					{{ form.confirm_password(class="form-control form-control-lg") }}
+					{% if form.confirm_password.errors %}
+						{{ form.confirm_password(class="form-control form-control-lg is-invalid") }}
+						<div class=invalid-feedback >
+							{% for error in form.confirm_password.errors %}
+								<span>{{ error }}</span>
+							{% endfor %}
+						</div>
+					{% else %}
+						{{ form.confirm_password(class="form-control form-control-lg") }}
+					{% endif %}
 				</div>
 		
 			</fieldset>
 				<div class="form-group">
-				{{ form.submit(class="btn btn-outline-info") }}
+				{{ form.submit(class="btn btn-outline-info") }} <!-- Button -->
 				</div>
 		</form>
 	</div>
 	<div class="border-top pt-3">
-		<small class="text-muted">
-			Already have an account?<a class="ml-2" href="{{ url_for('login') }}"> Sign In</a>
+		<small class="text-muted"> <!-- small/discrete text -->
+			<!-- redirect user if have account -->
+			Already have an account?<a class="ml-2" href="{{ url_for('login') }}"> Sign In</a> 
 		</small>
-		
 	</div>
 {% endblock content %}

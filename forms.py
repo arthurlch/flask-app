@@ -10,6 +10,7 @@ from wtforms.validators import DataRequired, Length, Email, EqualTo
 
 """Define the registration form, define a stringfield with an input(Datarequired), and a min-max lenght of the username"""
 class RegistrationForm(FlaskForm):
+
 	username = StringField('Username ', 
 									validators=[DataRequired(), Length(min=2, max=15)])
 	email = StringField('Email ', 
@@ -20,7 +21,7 @@ class RegistrationForm(FlaskForm):
 									validators=[DataRequired(), EqualTo('password')])
 	submit = SubmitField('Sign Up')
 
-""" class for the login form, we reused the same code as above """
+""" class for the login form, we re-use the same code as above, define each Field """
 class LoginForm(FlaskForm):
 	
 	email = StringField('Email', validators=[DataRequired(), Email()])

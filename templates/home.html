@@ -1,9 +1,12 @@
+<!-- html file of flaskapp.com/ or /home -->
+
 
 {% extends "layout.html" %} 
 {% block content %}
 	{% for post in posts %}
 		<article class="media content-section">
 		  <div class="media-body">
+		  	<!-- display blog posts, we currently use dummy data found in app.py line 41 -->
 		    <div class="article-metadata">
 		      <a class="mr-2" href="#">{{ post.author }}</a>
 		      <small class="text-muted">{{ post.date_posted }}</small>
@@ -13,7 +16,7 @@
 		  </div>
 		</article>
 	{% endfor %}
-{% endblock content %} <!-- endblock stop the block, content: cite the block to stop to be more precise -->
+{% endblock content %} <!-- endblock stop the block, content: cite the block's name to be more precise -->
 
 
 

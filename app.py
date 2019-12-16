@@ -21,13 +21,13 @@ User Registration
 """
 ###
 
-from flask import Flask, url_for, render_template
+from flask import Flask, url_for, render_template, flash, redirect
 # import flask framework 
 # import url_for (avoid hard coding of the urls)
 from forms import RegistrationForm, LoginForm
-# define name app app = __name__
+# python idiom = __name__
 app = Flask(__name__)
-
+# secret key  16 Characters 16bit key / if public make new
 app.config['SECRET_KEY'] ='b88b9d2380bfe69dbb922efa674210a5'
 
 
@@ -74,14 +74,26 @@ name = [{
 	'name':'name'
 }]
 
-@app.route('/register', methods=['GET', 'POST'])
+""" Register part route/form/class/return string & redirect user """
+# HTML methods  GET to transfer retrieve the data from the form, POST send the data retrieved with GET() to the database 
+@app.route('/register', methods=['GET', 'POST']) 
 def register():
 	form = RegistrationForm()
+	if form.validate_on_submit():
+		# f string to convert input to string for greeting message ' Account created for {} '
+		flash(f' Account created for {form.username.data}', 'success') #layout.html line 71 display a message when successfully logged
+		return redirect(url_for('home'))
 	return render_template('register.html', title='Register', form=form)
 
-@app.route('/login')
+@app.route('/login', methods=['GET', 'POST']) # https request to retrieve and send data to the database
 def login():
 	form = LoginForm()
+	if form.validate_on_submit():
+		if form.email.data == "admin@blog.com" and form.password.data == "password": # dummy data to fake login
+			flash('You have been logged-in', 'success')
+			return redirect(url_for('home'))
+		else:
+			flash(' Unsuccessful temptative', 'danger')
 	return render_template('login.html', title='Login', form=form)
 
 # python idiom __name_ = '__main__' 

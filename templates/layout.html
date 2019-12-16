@@ -18,9 +18,7 @@ Bootstrap documentation: https://getbootstrap.com/docs/4.4/getting-started/intro
 alternatives Bootstrap librairy: https://pythonhosted.org/Flask-Bootstrap/ 
 
 To render html Flask use the Jinja engine 
-Jinja documentation:https://jinja.palletsprojects.com/en/2.10.x/
-
- -->
+Jinja documentation:https://jinja.palletsprojects.com/en/2.10.x/ -->
 
 <!DOCTYPE html>
 
@@ -34,9 +32,9 @@ Jinja documentation:https://jinja.palletsprojects.com/en/2.10.x/
 	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
 	    <link rel="stylesheet" type="text/css" href="{{ url_for('static',  filename='main.css' ) }}">
-
+	    <!-- Bootstrap CSS -->
 		{% if title %}
-			<title> Flask blog - {{ title }}</title>
+			<title> Flask app - {{ title }}</title>
 		{% else %}
 		<title>Home</title>
 		{% endif %}
@@ -44,7 +42,7 @@ Jinja documentation:https://jinja.palletsprojects.com/en/2.10.x/
 	</head>
 	
 <body>
-	<header class="site-header">
+	<header class="site-header"> <!-- menu -->
   		<nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
     		<div class="container">
 		      <a class="navbar-brand mr-4" href="/">Flask Blog</a>
@@ -53,13 +51,14 @@ Jinja documentation:https://jinja.palletsprojects.com/en/2.10.x/
 		      </button>
 		      <div class="collapse navbar-collapse" id="navbarToggle">
 		        <div class="navbar-nav mr-auto">
-		          <a class="nav-item nav-link" href="/">Home</a>
-		          <a class="nav-item nav-link" href="/about">About</a>
+		        <!-- url_for(page) painless linking if new root, keep the link intact -->
+		          <a class="nav-item nav-link" href="{{url_for('home')}}">Home</a> 
+		          <a class="nav-item nav-link" href="{{url_for('about')}}">About</a>
 		        </div>
 		        <!-- Navbar Right Side -->
 		        <div class="navbar-nav">
-		          <a class="nav-item nav-link" href="/login">Login</a>
-		          <a class="nav-item nav-link" href="/register">Register</a>
+		          <a class="nav-item nav-link" href="{{url_for('login')}}">Login</a>
+		          <a class="nav-item nav-link" href="{{url_for('register')}}">Register</a>
         </div>
       </div>
     </div>
@@ -68,12 +67,22 @@ Jinja documentation:https://jinja.palletsprojects.com/en/2.10.x/
 
 	<main role="main" class="container">
 	  <div class="row">
+	  	<!-- Display message if success when user input taken - message categories (successful, alert) -->
 	    <div class="col-md-8">
-	      {% block content %}{% endblock %}
+	      	{% with messages = get_flashed_messages(with_categories=true) %} 
+	      		{% if messages %}
+	      			{% for category, message in messages%}
+	      				<div class="alert alert-{{ category }}">
+	      					{{ message }}	
+	      				</div>
+	      			{% endfor %}
+	      		{% endif %}
+	      	{% endwith %}
+	      	{% block content %} {% endblock %} 
 	    </div>
 	    <div class="col-md-4">
 	      <div class="content-section">
-	        <h3>Our Sidebar</h3>
+	        <h3>Our Sidebar</h3> <!-- Sidebar -->
 	        <p class='text-muted'>You can put any information here you'd like.
 	          <ul class="list-group">
 	            <li class="list-group-item list-group-item-light">Latest Posts</li>
@@ -87,7 +96,7 @@ Jinja documentation:https://jinja.palletsprojects.com/en/2.10.x/
 	  </div>
 	</main>
 
-<!-- Optional JavaScript -->
+	<!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

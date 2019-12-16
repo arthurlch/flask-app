@@ -47,7 +47,7 @@ Tutorial Flask app deployment with Heroku : https://medium.com/the-andela-way/de
 * SublimeText3: https://www.sublimetext.com/
 * VisualStudioCode: https://visualstudio.microsoft.com/
 * ViM: https://www.vim.org/
-* Flask: https://www.palletsprojects.com/p/flask/
+* Flask: https://www.palletsprojects.com/p/flask/P
 * Bootstrap: https://getbootstrap.com/
 * Python 3.x: https://www.python.org/
 * HTML5
