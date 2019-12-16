@@ -67,14 +67,6 @@ about_profil = [{
 }]
 
 
-@app.route('/register')
-def register_user():
-	return render_template('register_user.html')
-
-@app.route('/login')
-def login():	
-	return render_template('login')
-
 @app.route('/user/<name>')
 def user(name):
 	return render_template('user.html', name=name)
@@ -82,7 +74,7 @@ name = [{
 	'name':'name'
 }]
 
-@app.route('/register')
+@app.route('/register', methods=['GET', 'POST'])
 def register():
 	form = RegistrationForm()
 	return render_template('register.html', title='Register', form=form)

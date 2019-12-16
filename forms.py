@@ -1,6 +1,6 @@
-from flask_wtf import Flaskform
-from wtforms import Stringfield, PasswordField, SubmitField, BooleanField
-from wtforms.validators import DataRequired, Lenght
+from flask_wtf import FlaskForm
+from wtforms import StringField, PasswordField, SubmitField, BooleanField
+from wtforms.validators import DataRequired, Length, Email, EqualTo
 
 """import flask_wtf: https://flask-wtf.readthedocs.io/en/stable/ 
 	import stringfield for displaying a field
@@ -9,19 +9,22 @@ from wtforms.validators import DataRequired, Lenght
 
 
 """Define the registration form, define a stringfield with an input(Datarequired), and a min-max lenght of the username"""
-class RegistrationForm(Flaskform):
-	username = Stringfield('Username', 
-									validators=[DataRequired(), Lenght(min=2, max=15)])
-
-	email = Stringfield('Email', validators=[Datarequired(), Email()])
-	password = PasswordField('Password', validators=[Datarequired()])
-	confirm_password = PasswordField('Confirm Password', validators=[Datarequired(), EqualTo('password')])
+class RegistrationForm(FlaskForm):
+	username = StringField('Username ', 
+									validators=[DataRequired(), Length(min=2, max=15)])
+	email = StringField('Email ', 
+									validators=[DataRequired(), Email()])
+	password = PasswordField('Password ', 
+									validators=[DataRequired()])
+	confirm_password = PasswordField('Confirm Password ', 
+									validators=[DataRequired(), EqualTo('password')])
 	submit = SubmitField('Sign Up')
 
-class LoginForm(Flaskform):
+""" class for the login form, we reused the same code as above """
+class LoginForm(FlaskForm):
 	
-	email = Stringfield('Email', validators=[Datarequired(), Email()])
-	password = PasswordField('Password', validators=[Datarequired()])
+	email = StringField('Email', validators=[DataRequired(), Email()])
+	password = PasswordField('Password', validators=[DataRequired()])
 	remember = BooleanField('Remember Me')
 	submit = SubmitField('Login')
 
