@@ -48,6 +48,8 @@ Tutorial Flask app deployment with Heroku : https://medium.com/the-andela-way/de
 * VisualStudioCode: https://visualstudio.microsoft.com/
 * ViM: https://www.vim.org/
 * Flask: https://www.palletsprojects.com/p/flask/P
+	wtf-forms
+* DATABASE SQLALCHEMY 
 * Bootstrap: https://getbootstrap.com/
 * Python 3.x: https://www.python.org/
 * HTML5
@@ -73,8 +75,9 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
-* This project has been made using the courses kindly made & opensource from  Corey Schafer.
-	Corey Schafer github:https://github.com/CoreyMSchafer
+* This project has been made using the courses kindly made & opensource from  *Corey Schafer*.
+	*Corey Schafer* github:https://github.com/CoreyMSchafer
 	Code used from his github: https://github.com/CoreyMSchafer/code_snippets/tree/master/Python
 	His website with ressources that helped to build this app: https://coreyms.com/ *
-	
+	Please visit his Youtube channel or his website his courses are incredible.
+	his YT Channel:https://www.youtube.com/channel/UCCezIgC97PvUuR4_gbFUs5g 
