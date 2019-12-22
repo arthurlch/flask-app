@@ -20,15 +20,47 @@ User Registration
 
 """
 ###
-
+from datetime import datetime
 from flask import Flask, url_for, render_template, flash, redirect
 # import flask framework 
 # import url_for (avoid hard coding of the urls)
 from forms import RegistrationForm, LoginForm
+# define SQL database using SQLALchemy
+from flask_sqlalchemy import SQLAlchemy 
 # python idiom = __name__
 app = Flask(__name__)
+
+""" app configuration """
 # secret key  16 Characters 16bit key / if public make new
 app.config['SECRET_KEY'] ='b88b9d2380bfe69dbb922efa674210a5'
+# define database path and location 
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
+
+# create the dabase
+db = SQLAlchemy(app)
+
+class User(db.Model):
+	""" Define all column ffor the User model in the database """
+	id = db.Column(db.Integer, primary_key=True)
+	username = db.Column(db.String(20), unique=True, nullable=False) # nullable because input/data needed 
+	email = db.Column(db.String(120), unique=True, nullable=False)
+	image_file = db.Column(db.String(30), nullable=False, default='default.jpg')
+	password = db.Column(db.String(80), nullable=False)
+	posts = db.relationship('Post', backref='author', lazy=True)
+	# represent user data
+	def __repr__(self):
+		return f"User( '{self.username}','{self.email}','{self.image_file}' )"
+
+class Post(db.Model):
+	id = db.Column(db.Integer, primary_key=True)
+	title = db.Column(db.String(100), nullable=False)
+	date_posted = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+	content = db.Column(db.Text, nullable=False)
+	user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False) # "user" lower case we reference table/col name
+	
+	def __repr__(self):
+		return f"Post('{self.title}', '{self.date_posted}', '{self.content}')"
+
 
 
 # .route decorator for home define home page + render template of home 
@@ -36,6 +68,7 @@ app.config['SECRET_KEY'] ='b88b9d2380bfe69dbb922efa674210a5'
 @app.route("/home") 
 def home():
 	return render_template('home.html', posts=posts)
+
 # dummy data 
 # the dummy data will serve to show how to transfer data from app.py ( flask to templates made in html)
 posts = [
