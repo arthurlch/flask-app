@@ -26,7 +26,7 @@ from flask import Flask, url_for, render_template, flash, redirect
 # import url_for (avoid hard coding of the urls)
 from forms import RegistrationForm, LoginForm
 # define SQL database using SQLALchemy
-from flask_sqlalchemy import SQLAlchemy 
+from flask_sqlalchemy import SQLAlchemy
 # python idiom = __name__
 app = Flask(__name__)
 
