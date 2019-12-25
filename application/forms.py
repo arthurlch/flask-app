@@ -1,6 +1,8 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, BooleanField
-from wtforms.validators import DataRequired, Length, Email, EqualTo
+from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
+from application.models import User
+
 
 """import flask_wtf: https://flask-wtf.readthedocs.io/en/stable/ 
 	import stringfield for displaying a field
@@ -20,6 +22,22 @@ class RegistrationForm(FlaskForm):
 	confirm_password = PasswordField('Confirm Password ', 
 									validators=[DataRequired(), EqualTo('password')])
 	submit = SubmitField('Sign Up')
+	### validate fields from forms, if username = usernam from data(db) then username taken, show message ###
+	
+	def validate_email(self, email):
+		user = User.query.filter_by(email=email.data).first()
+		if user:
+			raise ValidationError('Adress Email already taken! Have you forgot your password?')
+
+
+
+	def validate_username(self, username):
+		user = User.query.filter_by(username=username.data).first()
+		if user:
+			raise ValidationError('Username taken, Please choose a different username')
+
+	
+
 
 """ class for the login form, we re-use the same code as above, define each Field """
 class LoginForm(FlaskForm):

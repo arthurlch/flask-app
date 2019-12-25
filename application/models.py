@@ -13,7 +13,7 @@ class User(db.Model):
 	image_file = db.Column(db.String(30), nullable=False, default='default.jpg')
 	password = db.Column(db.String(80), nullable=False)
 	posts = db.relationship('Post', backref='author', lazy=True)
-	# represent user data
+	# represent user data 
 	def __repr__(self):
 		return f"User( '{self.username}','{self.email}','{self.image_file}' )"
 
