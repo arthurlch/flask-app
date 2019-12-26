@@ -23,4 +23,9 @@ bcrypt = Bcrypt(app)
 # define login manager module as a variable & and add it to app
 # The process is the same as bcrypt, add the function to class app to init the module
 login_manager = LoginManager(app)
+# login user can view account
+login_manager.login_view = 'login'
+login_manager.login_message_category = 'info'
+
+
 from application import routes

@@ -2,7 +2,7 @@ from flask import url_for, render_template, flash, redirect
 from application import app, db, bcrypt
 from application.forms import RegistrationForm, LoginForm
 from application.models import User,Post
-from flask_login import login_user, current_user, logout_user
+from flask_login import login_user, current_user, logout_user, login_required
 
 
 # .route decorator for home define home page + render template of home 
@@ -88,7 +88,8 @@ def logout():
 	logout_user()
 	return redirect(url_for('home'))
 
-@app.route('/account')
+@app.route('/account')	
+@login_required
 def account():
 	return render_template('account.html', title='Account')
 
