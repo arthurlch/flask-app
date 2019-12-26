@@ -6,6 +6,8 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 # import Bcrypt for pw hashin
 from flask_bcrypt import Bcrypt
+# login management for flask
+from flask_login import LoginManager
 
 # python idiom = __name__
 app = Flask(__name__)
@@ -18,5 +20,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
 db = SQLAlchemy(app)
 # pass app var to initialize the module
 bcrypt = Bcrypt(app)
-
+# define login manager module as a variable & and add it to app
+# The process is the same as bcrypt, add the function to class app to init the module
+login_manager = LoginManager(app)
 from application import routes

@@ -2,7 +2,7 @@ from flask import url_for, render_template, flash, redirect
 from application import app, db, bcrypt
 from application.forms import RegistrationForm, LoginForm
 from application.models import User,Post
-
+from flask_login import login_user
 
 
 # .route decorator for home define home page + render template of home 
@@ -68,10 +68,12 @@ def register():
 
 @app.route('/login', methods=['GET', 'POST']) # https request to retrieve and send data to the database
 def login():
+	""" login form and submit. if email of user is = email in database then pick first    """
 	form = LoginForm()
 	if form.validate_on_submit():
-		if form.email.data == "admin@blog.com" and form.password.data == "password": # dummy data to fake login
-			flash('You have been logged-in', 'success')
+		user = User.query.filter_by(email=form.email.data).first()
+		if user  and bcrypt.check_password_hash(user.password, form.password.data):
+			login_user(user, remember=form.remember.data)
 			return redirect(url_for('home'))
 		else:
 			flash(' Unsuccessful temptative', 'danger')
