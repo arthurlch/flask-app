@@ -2,7 +2,7 @@ from flask import url_for, render_template, flash, redirect
 from application import app, db, bcrypt
 from application.forms import RegistrationForm, LoginForm
 from application.models import User,Post
-from flask_login import login_user
+from flask_login import login_user, current_user, logout_user
 
 
 # .route decorator for home define home page + render template of home 
@@ -53,6 +53,8 @@ name = [{
 # HTML methods  GET to transfer retrieve the data from the form, POST send the data retrieved with GET() to the database 
 @app.route('/register', methods=['GET', 'POST']) 
 def register():
+	if current_user.is_authenticated:
+		return redirect(url_for('home'))
 	form = RegistrationForm()
 	if form.validate_on_submit():
 		hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
@@ -69,6 +71,8 @@ def register():
 @app.route('/login', methods=['GET', 'POST']) # https request to retrieve and send data to the database
 def login():
 	""" login form and submit. if email of user is = email in database then pick first    """
+	if current_user.is_authenticated:
+		return redirect(url_for('home'))
 	form = LoginForm()
 	if form.validate_on_submit():
 		user = User.query.filter_by(email=form.email.data).first()
@@ -78,3 +82,13 @@ def login():
 		else:
 			flash(' Unsuccessful temptative', 'danger')
 	return render_template('login.html', title='Login', form=form)
+
+@app.route('/logout')
+def logout():
+	logout_user()
+	return redirect(url_for('home'))
+
+@app.route('/account')
+def account():
+	return render_template('account.html', title='Account')
+
