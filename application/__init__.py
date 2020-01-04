@@ -27,5 +27,5 @@ login_manager = LoginManager(app)
 login_manager.login_view = 'login'
 login_manager.login_message_category = 'info'
 
-
+# python read last line in __init__ to avoid misreading and error
 from application import routes

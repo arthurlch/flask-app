@@ -23,14 +23,14 @@ class RegistrationForm(FlaskForm):
 									validators=[DataRequired(), EqualTo('password')])
 	submit = SubmitField('Sign Up')
 	### validate fields from forms, if username = usernam from data(db) then username taken, show message ###
-	
+	""" check if email already exist in the database """
 	def validate_email(self, email):
 		user = User.query.filter_by(email=email.data).first()
 		if user:
 			raise ValidationError('Adress Email already taken! Have you forgot your password?')
 
 
-
+	""" check if the username exist already in the database """
 	def validate_username(self, username):
 		user = User.query.filter_by(username=username.data).first()
 		if user:
