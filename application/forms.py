@@ -1,4 +1,5 @@
 from flask_wtf import FlaskForm
+from flask_login import current_user
 from wtforms import StringField, PasswordField, SubmitField, BooleanField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
 from application.models import User
@@ -25,19 +26,17 @@ class RegistrationForm(FlaskForm):
 	### validate fields from forms, if username = usernam from data(db) then username taken, show message ###
 	""" check if email already exist in the database """
 	def validate_email(self, email):
-		user = User.query.filter_by(email=email.data).first()
-		if user:
-			raise ValidationError('Adress Email already taken! Have you forgot your password?')
+		if email.data != current_user.email:
+			user = User.query.filter_by(email=email.data).first()
+			if user:
+				raise ValidationError('Adress Email already taken! Have you forgot your password?')
 
-
-	""" check if the username exist already in the database """
+	""" check if the username exist already in the database """	
 	def validate_username(self, username):
-		user = User.query.filter_by(username=username.data).first()
-		if user:
-			raise ValidationError('Username taken, Please choose a different username')
-
-	
-
+		if username.data != current_user.username:
+			user = User.query.filter_by(username=username.data).first()
+			if user:
+				raise ValidationError('Username taken, Please choose a different username')
 
 """ class for the login form, we re-use the same code as above, define each Field """
 class LoginForm(FlaskForm):
@@ -47,4 +46,24 @@ class LoginForm(FlaskForm):
 	remember = BooleanField('Remember Me')
 	submit = SubmitField('Login')
 
+"""update the information of the user account"""
+class RegistrationForm(FlaskForm):
+
+	username = StringField('Username ', 
+									validators=[DataRequired(), Length(min=2, max=15)])
+	email = StringField('Email ', 
+									validators=[DataRequired(), Email()])
 	
+	submit = SubmitField('Update')
+	### validate fields from forms, if username = usernam from data(db) then username taken, show message ###
+	""" check if email already exist in the database """
+	def validate_email(self, email):
+		user = User.query.filter_by(email=email.data).first()
+		if user:
+			raise ValidationError('Adress Email already taken! Have you forgot your password?')
+
+	""" check if the username exist already in the database """
+	def validate_username(self, username):
+		user = User.query.filter_by(username=username.data).first()
+		if user:
+			raise ValidationError('Username taken, Please choose a different username')

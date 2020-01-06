@@ -1,11 +1,11 @@
 from flask import url_for, render_template, flash, redirect, request
 from application import app, db, bcrypt
-from application.forms import RegistrationForm, LoginForm
+from application.forms import RegistrationForm, LoginForm, UpdateAccountForm
 from application.models import User,Post
 from flask_login import login_user, current_user, logout_user, login_required
 
 
-# .route decorator for home define home page + render template of home 
+# .route decorator for home define home page + render html template 
 @app.route("/")
 @app.route("/home") 
 def home():
@@ -93,6 +93,7 @@ def logout():
 @login_required
 def account():
 	""" define user account  """
+	form = UpdateAccountForm()
 	image_file = url_for('static', filename='profile_pics/' + current_user.image_file) # path for user profile picture
-	return render_template('account.html', title='Account', image_file=image_file) # render account.html file
+	return render_template('account.html', title='Account', image_file=image_file, form=form) # render account.html file
 
