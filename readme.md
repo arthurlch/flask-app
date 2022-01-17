@@ -4,13 +4,8 @@ Flask application
 
 ## Getting Started
 
-This Flask application has been made in a purpose to learn the Flash framework. 
+This Flask application has been made in a purpose to learn the Flask framework. 
 
-The application/ structure use heavily the code provided by Corey Schafer(https://github.com/CoreyMSchafer/code_snippets/tree/master/Python/Flask_Blog)
-
-
-The whole application has been re-typed entirely & documented by me.  
-Instead of forking this repo, it is recommended to use the link provided above and to fork directly from CoreyMSchafer github.
 
 
 ### Prerequisites
@@ -70,9 +65,6 @@ No process for submitting pull requests to us. Please fork the project for any m
 
 ## Authors
 
-* **Corey Schafer** - * Flask application * - [CoreyMSchafer](https://github.com/CoreyMSchafer)
-
-* re-written by
 
 * **ArthurDav** - * Flask application * - [ArthurDav](https://github.com/ArthurDav)
 
@@ -85,7 +77,4 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 * This project has been made using the courses kindly made & opensource from  *Corey Schafer*.
 	*Corey Schafer* github:https://github.com/CoreyMSchafer
-	Code used from his github: https://github.com/CoreyMSchafer/code_snippets/tree/master/Python
-	His website with ressources that helped to build this app: https://coreyms.com/ *
-	Please visit his Youtube channel or his website his courses are incredible.
-	his YT Channel:https://www.youtube.com/channel/UCCezIgC97PvUuR4_gbFUs5g 
+	
